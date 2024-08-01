@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: dev
+  servlet: # because we want to upload files
+    multipart:
+      max-file-size: 50MB
+springdoc:
+  default-produces-media-type: application/json
+
+server:
+  servlet:
+    context-path: /api/v1 # so that later in the controller, we don't need to specify it

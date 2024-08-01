@@ -1,0 +1,45 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:1234/book_social_network
+    username: username
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto:  update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql # help jpa and hibernate to better generate the queries
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  mail:
+    host: localhost # this is just for development
+    port: 1025
+    username: soukaina
+    password: soukaina # it isn't even required
+    properties:
+      mail:
+        smtp:
+          trust: "*" # in production, we should specify what we want to trust
+        auth: true
+        starttls:
+          enable: true # this is for extra security
+        connectiontimeout: 5000 # it is in ms
+        timeout: 3000 # 3s
+        writetimeout: 5000
+
+server:
+  port: 8088
+
+# those are custom properties
+application:
+  security:
+    jwt:
+      secret-key: 4JTjE458zzhHdhllwrN3Yts10mldwieaVyTO1L4h8r4swnQkl83TPT2fODMgX4Hp
+      expiration: 86400000 # 1 day
+
+  mailing:
+    frontend: # because it will used from the fronend
+      activation-url: http://localhost:4200/activate-account
