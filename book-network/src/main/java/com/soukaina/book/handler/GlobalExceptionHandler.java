@@ -1,7 +1,7 @@
 package com.soukaina.book.handler;
 
+import com.soukaina.book.exception.OperationNotPermittedException;
 import jakarta.mail.MessagingException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -9,10 +9,8 @@ import org.springframework.security.authentication.LockedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
 import java.util.HashSet;
 import java.util.Set;
-
 import static com.soukaina.book.handler.BusinessErrorCodes.*;
 import static org.springframework.http.HttpStatus.*;
 
@@ -45,6 +43,28 @@ public class GlobalExceptionHandler {
                 );
     }
 
+    @ExceptionHandler(MessagingException.class) // when we are not able to send an email
+    public ResponseEntity<ExceptionResponse> handleException(MessagingException exp) {
+        return ResponseEntity
+                .status(INTERNAL_SERVER_ERROR) // since it is something related to our application
+                .body(
+                        ExceptionResponse.builder()
+                                .error(exp.getMessage())
+                                .build()
+                );
+    }
+
+    @ExceptionHandler(OperationNotPermittedException.class)
+    public ResponseEntity<ExceptionResponse> handleException(OperationNotPermittedException exp) {
+        return ResponseEntity
+                .status(BAD_REQUEST)
+                .body(
+                        ExceptionResponse.builder()
+                                .error(exp.getMessage())
+                                .build()
+                );
+    }
+
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ExceptionResponse> handleException(BadCredentialsException exp) {
         return ResponseEntity
@@ -54,17 +74,6 @@ public class GlobalExceptionHandler {
                                 .businessErrorCode(BAD_CREDENTIALS.getCode())
                                 .businessErrorDescription(BAD_CREDENTIALS.getDescription())
                                 .error(BAD_CREDENTIALS.getDescription())
-                                .build()
-                );
-    }
-
-    @ExceptionHandler(MessagingException.class) // when we are not able to send an email
-    public ResponseEntity<ExceptionResponse> handleException(MessagingException exp) {
-        return ResponseEntity
-                .status(INTERNAL_SERVER_ERROR) // since it is something related to our application
-                .body(
-                        ExceptionResponse.builder()
-                                .error(exp.getMessage())
                                 .build()
                 );
     }
