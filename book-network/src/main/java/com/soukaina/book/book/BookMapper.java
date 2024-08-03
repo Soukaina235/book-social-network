@@ -1,5 +1,6 @@
 package com.soukaina.book.book;
 
+import com.soukaina.book.file.FileUtils;
 import com.soukaina.book.history.BookTransactionHistory;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ public class BookMapper {
                 .archived(book.isArchived())
                 .shareable(book.isShareable())
                 .owner(book.getOwner().fullName())
-                // todo .cover()
+                .cover(FileUtils.readFileFromLocation(book.getBookCover()))
                 .build();
     }
 

@@ -43,3 +43,7 @@ application:
   mailing:
     frontend: # because it will used from the fronend
       activation-url: http://localhost:4200/activate-account
+
+  file:
+    upload:
+      photos-output-path: ./uploads
