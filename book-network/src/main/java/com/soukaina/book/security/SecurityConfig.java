@@ -23,7 +23,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .cors(Customizer.withDefaults())
+                .cors(Customizer.withDefaults()) // spring will try to search for any definition of cors filter and it will use the config that we provided in here
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests( req ->
                         req.requestMatchers(
