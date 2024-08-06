@@ -78,7 +78,7 @@ public class GlobalExceptionHandler {
                 );
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class) // when the user enters invalid data and it will be thrown by the @Valid annotation
+    @ExceptionHandler(MethodArgumentNotValidException.class) // when the user enters invalid data, and it will be thrown by the @Valid annotation
     public ResponseEntity<ExceptionResponse> handleException(MethodArgumentNotValidException exp) {
         // we are using a set because we might find the error many times
         // for example here we have:

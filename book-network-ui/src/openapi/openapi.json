@@ -261,8 +261,8 @@
           "required": true
         },
         "responses": {
-          "500": {
-            "description": "Internal Server Error",
+          "200": {
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
