@@ -36,7 +36,7 @@ export class LoginComponent {
       error: (err) => { // This callback function is executed if the authentication request fails.
         console.log(err);
 
-        // he didn't need to parse the error in the tutorial, but i had to because my error is a string
+/*        // he didn't need to parse the error in the tutorial, but i had to because my error is a string
         // and to access the validationErrors, i need it to be of type JSON
         let parsedError;
         try {
@@ -44,12 +44,12 @@ export class LoginComponent {
           console.log(parsedError.validationErrors);
         } catch (e) {
           console.error('Error parsing JSON:', e);
-        }
-        if (parsedError.validationErrors) { // we named it validationErrors in our backend, so the json error will contain this validationErrors
-          this.errorMsg = parsedError.validationErrors; // errorMsg is a list
+        }*/
+        if (err.error.validationErrors) { // we named it validationErrors in our backend, so the json error will contain this validationErrors
+          this.errorMsg = err.error.validationErrors; // errorMsg is a list
         } else {
           // in case we have a BadCredentialsException for example, because we in the backend error handler we specified error in this case
-          this.errorMsg.push(parsedError.error)
+          this.errorMsg.push(err.error.error)
         }
       }
     })
