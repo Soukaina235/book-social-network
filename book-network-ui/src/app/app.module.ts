@@ -3,12 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './pages/login/login.component';
 import {FormsModule} from "@angular/forms";
 import { RegisterComponent } from './pages/register/register.component';
 import { ActivateAccountComponent } from './pages/activate-account/activate-account.component';
 import {CodeInputModule} from "angular-code-input";
+import {HttpTokenInterceptor} from "./services/interceptor/http-token.interceptor";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,13 @@ import {CodeInputModule} from "angular-code-input";
     // we need to import it in order to use ngModel
   ],
   providers: [
-    HttpClient
+    HttpClient,
+    {
+      // we are adding our interceptor among the list of interceptors
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpTokenInterceptor,
+      multi: true // because this isn't the only interceptor in our app, angular has it own too
+    }
   ],
   bootstrap: [AppComponent]
 })
