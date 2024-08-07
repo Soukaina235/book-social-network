@@ -24,7 +24,13 @@
     <p class="card-text">{{book.synopsis}}</p>
     <div class="card-footer d-flex gap-2 justify-content-between align-items-center">
       <div class="d-flex gap-2">
-        5 stars
+        <app-rating [rating]="book.rate || 0"></app-rating>
+        <!-- displayed only if book.rate > 0
+          If it is undefined, it will be 0
+          -->
+        <span class="fw-bold" *ngIf="book.rate || 0 > 0">
+          {{book.rate}}
+        </span>
       </div>
       <div class="d-flex gap-2" *ngIf="!manag">
         <i (click)="onShowDetails()" class="fas fa-circle-info text-primary"></i> <!-- 'text-primary' makes it blue -->
