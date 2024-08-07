@@ -10,7 +10,7 @@ export class BookCardComponent {
 
   private _book: BookResponse = {};
   private _bookCover: string | undefined; // undefined, since the cover could be not uploaded
-  private _manag = false;
+  private _manage = false;
 
   get book(): BookResponse {
     return this._book;
@@ -21,13 +21,13 @@ export class BookCardComponent {
     this._book = value;
   }
 
-  get manag(): boolean {
-    return this._manag;
+  get manage(): boolean {
+    return this._manage;
   }
 
   @Input()
-  set manag(value: boolean) {
-    this._manag = value;
+  set manage(value: boolean) {
+    this._manage = value;
   }
 
   get bookCover(): string | undefined {
