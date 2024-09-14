@@ -1,6 +1,12 @@
+<!--The priority is for archived here:
+so, if the book is shareable but archived, the book card will be having the
+warning color and not the success color in its border
+-->
 <div
-  class="card"
+  class="card border-3"
   style="width: 20rem;"
+  [class.border-success]="book.shareable"
+  [class.border-warning]="book.archived"
 >
   <img height="200" [src]="bookCover" class="card-img-top" alt="...">
   <div class="card-body overflow-scroll">

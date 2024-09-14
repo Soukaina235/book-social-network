@@ -41,7 +41,7 @@ application:
       expiration: 86400000 # 1 day
 
   mailing:
-    frontend: # because it will used from the fronend
+    frontend: # because it will be used from the frontend
       activation-url: http://localhost:4200/activate-account
 
   file:

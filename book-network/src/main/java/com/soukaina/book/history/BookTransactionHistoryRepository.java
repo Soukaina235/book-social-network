@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public interface BookTransactionHistoryRepository extends JpaRepository<BookTransactionHistory, Integer> {
 
+    // find all borrowed books by a certain user
     @Query("""
         SELECT history
         FROM BookTransactionHistory history
@@ -16,6 +17,7 @@ public interface BookTransactionHistoryRepository extends JpaRepository<BookTran
     """)
     Page<BookTransactionHistory> findAllBorrowedBooks(Pageable pageable, Integer userId);
 
+    //
     @Query("""
         SELECT history
         FROM BookTransactionHistory history

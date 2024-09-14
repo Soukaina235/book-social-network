@@ -37,6 +37,7 @@ public class BookController {
 
     @GetMapping
     // we can't return all books at once, we need to implement pagination
+    // find all the books, but the books of the owner
     public ResponseEntity<PageResponse<BookResponse>> findAllBooks(
             @RequestParam(name = "page", defaultValue = "0", required = false) int page,
             @RequestParam(name = "size", defaultValue = "10", required = false) int size,
