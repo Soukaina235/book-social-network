@@ -39,6 +39,7 @@ public class Book extends BaseEntity {
     @OneToMany(mappedBy = "book")
     private List<BookTransactionHistory> histories;
 
+    // Marking the getRate() method with @Transient ensures that JPA doesn't attempt to treat it as a persistent property or map it to a column in the database.
     @Transient
     public double getRate() {
         if (feedbacks == null || feedbacks.isEmpty()) {

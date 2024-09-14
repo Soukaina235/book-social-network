@@ -4,8 +4,8 @@
 <div
   *ngIf="message"
   class="alert"
-  [class.alert-success]="level == 'success'"
-  [class.alert-danger]="level == 'error'"
+  [class.alert-success]="level === 'success'"
+  [class.alert-danger]="level === 'error'"
 >
   {{message}}
 </div>

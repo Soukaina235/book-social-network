@@ -10,6 +10,10 @@ export class BookCardComponent {
 
   private _book: BookResponse = {};
   private _bookCover: string | undefined; // undefined, since the cover could be not uploaded
+
+  // this book component will be used in different pages, in home, in my books, and so forth
+  // so this manage property will be useful to choose which managing properties we will display
+  // depending on what page the card is used in
   private _manage = false;
 
   get book(): BookResponse {
@@ -20,6 +24,8 @@ export class BookCardComponent {
   set book(value: BookResponse) {
     this._book = value;
   }
+
+
 
   get manage(): boolean {
     return this._manage;
@@ -33,9 +39,10 @@ export class BookCardComponent {
   get bookCover(): string | undefined {
     if (this._book.cover) {
       // the book will be returned as a base 64 image
+      // so when we want to display a base 64 image, we need to add some things before
       return 'data:image/jpg;base64,' + this._book.cover;
     }
-    return "https://dispatch.barnesandnoble.com/content/dam/ccr/bnstores/books/customer-favorites/2022/Books/5/PROD-23529_Customer_Fav_Book_NEW-RELEASES.gif";
+    return 'assets/images/default-book-cover.png';
   }
 
   @Output() private share: EventEmitter<BookResponse> = new EventEmitter<BookResponse>();

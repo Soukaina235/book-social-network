@@ -12,8 +12,10 @@ import {BookResponse} from "../../../../services/models/book-response";
 export class BookListComponent implements OnInit {
   bookResponse: PageResponseBookResponse = {};
   page: number = 0;
-  size: number = 5;
+  size: number = 2;
   message: string = '';
+  // for the message alerts, success is the default value here
+  // level is used to add the appropriate class to the alert
   level: string = 'success';
 
   constructor(
@@ -72,7 +74,7 @@ export class BookListComponent implements OnInit {
   borrowBook(book: BookResponse) {
     this.message = '';
     this.bookService.borrowBook({
-      'book-id': book.id as number
+      'book-id': book.id as number // because book.id can be number or undefined
     }).subscribe({
       next: (book) => {
         this.level = 'success';
