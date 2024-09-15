@@ -204,8 +204,8 @@ public class BookService {
         }
 
         User user = (User) connectedUser.getPrincipal();
-        if (Objects.equals(book.getOwner().getId(), user.getId())) {
-            throw new OperationNotPermittedException("You cannot return your own book");
+        if (!Objects.equals(book.getOwner().getId(), user.getId())) {
+            throw new OperationNotPermittedException("You cannot approve the return of a book that you do not own");
         }
 
         // making sure that the connected user is the owner of the book
