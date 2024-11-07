@@ -1,5 +1,5 @@
 services:
-  postgres:
+  postgres: # postgres service
     container_name: postgres-sql-bsn # bsn stands for book social network
     image: postgres
     environment:
@@ -7,7 +7,7 @@ services:
       POSTGRES_PASSWORD: password
       PGDATA: /var/lib/postgresql/data
       POSTGRES_DB: book_social_network
-    volumes: 
+    volumes:
       - postgres:/data/postgres
     ports:
       - 1234:5432
@@ -20,11 +20,22 @@ services:
     ports:
       - 1080:1080 # this port is to display the web app
       - 1025:1025 # the port that we need to use here in our application
+  bsn-api: # a new service
+    container_name: bsn-api
+    image: bsn/bsn:1.0.0
+#    environment: we can pass the env variables, but it isn't mandatory since we provided default values in the Dockerfile
+    ports:
+      - 8088:8088
+    networks:
+      - spring-demo
+    depends_on: # this service won't run unless the postgres service is up and running
+      - postgres
 
 networks:
   spring-demo:
+    name: spring-demo
     driver: bridge
 
-volumes: 
+volumes:
   postgres:
      driver: local
