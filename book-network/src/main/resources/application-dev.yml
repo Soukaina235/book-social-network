@@ -15,20 +15,20 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
   mail:
-    host: localhost # this is just for development
-    port: 1025
-    username: soukaina
-    password: soukaina # it isn't even required
+    host: smtp.gmail.com
+    port: 465
+    username: username
+    password: password
     properties:
       mail:
         smtp:
-          trust: "*" # in production, we should specify what we want to trust
-        auth: true
-        starttls:
-          enable: true # this is for extra security
-        connectiontimeout: 5000 # it is in ms
-        timeout: 3000 # 3s
-        writetimeout: 5000
+          auth: true
+          ssl:
+            enable: true
+            trust: "*"
+          starttls:
+            enable: true
+    protocol: smtp
 
 server:
   port: 8088
@@ -38,7 +38,9 @@ application:
   security:
     jwt:
       secret-key: 4JTjE458zzhHdhllwrN3Yts10mldwieaVyTO1L4h8r4swnQkl83TPT2fODMgX4Hp
-      expiration: 86400000 # 1 day
+      expiration: 86400000 # a day
+      refresh-token:
+        expiration: 604800000 # 7 days
 
   mailing:
     frontend: # because it will be used from the frontend
