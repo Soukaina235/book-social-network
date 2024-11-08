@@ -36,7 +36,9 @@ public class EmailService {
         if (emailTemplate == null) { // just extra-checking
             templateName = "confirm-email"; // falling back to the default name
         } else {
-            templateName = emailTemplate.name();
+//            templateName = emailTemplate.name(); will return the enum name (ACTIVATE ACCOUNT)
+            // we want it to return activate_account
+            templateName = emailTemplate.getName();
         }
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
@@ -54,7 +56,7 @@ public class EmailService {
         Context context = new Context();
         context.setVariables(properties);
 
-        helper.setFrom("soukaina@contact.com");
+        helper.setFrom("soukainadev2401@gmail.com");
         helper.setTo(to);
         helper.setSubject(subject);
 

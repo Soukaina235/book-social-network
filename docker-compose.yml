@@ -22,7 +22,7 @@ services:
       - 1025:1025 # the port that we need to use here in our application
   bsn-api: # a new service
     container_name: bsn-api
-    image: bsn/bsn:1.0.0
+    image: bsn/bsn:1.0.3
 #    environment: we can pass the env variables, but it isn't mandatory since we provided default values in the Dockerfile
     ports:
       - 8088:8088
@@ -30,6 +30,15 @@ services:
       - spring-demo
     depends_on: # this service won't run unless the postgres service is up and running
       - postgres
+  bsn-ui:
+    container_name: bsn-ui
+    image: bsn/bsn-ui:1.0.0
+    ports:
+      - 8080:80
+    networks:
+      - spring-demo
+    depends_on:
+      - bsn-api
 
 networks:
   spring-demo:

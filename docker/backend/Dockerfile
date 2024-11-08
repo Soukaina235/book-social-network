@@ -26,7 +26,7 @@ FROM amazoncorretto:17
 # dev is the default value in this case
 ARG PROFILE=dev
 # default is 1.0.O
-ARG APP_VERSION=1.0.0
+ARG APP_VERSION=1.0.3
 
 # moving to another directory
 WORKDIR /app
