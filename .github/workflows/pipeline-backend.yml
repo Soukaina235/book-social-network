@@ -31,6 +31,7 @@ jobs:
       - name: Compile Project
         run: |
           cd book-network
+          chmod +x mvnw
           ./mvnw clean compile
 
   unit-tests:
@@ -51,6 +52,7 @@ jobs:
       - name: Running Unit Tests
         run: |
           cd book-network
+          chmod +x mvnw
           ./mvnw clean test
 
   build:
@@ -72,6 +74,7 @@ jobs:
       - name: Build Project
         run: |
           cd book-network
+          chmod +x mvnw
           ./mvnw clean package
       
   build-image:
@@ -93,6 +96,7 @@ jobs:
       - name: Build Project
         run: |
           cd book-network
+          chmod +x mvnw
           ./mvnw clean package
 
       - name: Extract Project Version
