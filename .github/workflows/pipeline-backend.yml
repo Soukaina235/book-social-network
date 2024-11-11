@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 0 # we don't want to check out the sub-branches, we only want to check out the current one
 
       - name: Setup JDK
-        uses: actions
+        uses: actions/setup-java@v4
         with:
           java-versions: 17
           distribution: 'corretto'
@@ -43,7 +43,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup JDK
-        uses: actions
+        uses: actions/setup-java@v4
         with:
           java-versions: 17
           distribution: 'corretto'
@@ -64,7 +64,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup JDK
-        uses: actions
+        uses: actions/setup-java@v4
         with:
           java-versions: 17
           distribution: 'corretto'
@@ -85,7 +85,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup JDK
-        uses: actions
+        uses: actions/setup-java@v4
         with:
           java-versions: 17
           distribution: 'corretto'
