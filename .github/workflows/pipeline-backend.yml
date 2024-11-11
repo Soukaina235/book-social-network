@@ -25,7 +25,7 @@ jobs:
       - name: Setup JDK
         uses: actions/setup-java@v4
         with:
-          java-versions: 17
+          java-version: 17
           distribution: 'corretto'
 
       - name: Compile Project
@@ -45,7 +45,7 @@ jobs:
       - name: Setup JDK
         uses: actions/setup-java@v4
         with:
-          java-versions: 17
+          java-version: 17
           distribution: 'corretto'
 
       - name: Running Unit Tests
@@ -66,7 +66,7 @@ jobs:
       - name: Setup JDK
         uses: actions/setup-java@v4
         with:
-          java-versions: 17
+          java-version: 17
           distribution: 'corretto'
 
       - name: Build Project
@@ -87,7 +87,7 @@ jobs:
       - name: Setup JDK
         uses: actions/setup-java@v4
         with:
-          java-versions: 17
+          java-version: 17
           distribution: 'corretto'
 
       - name: Build Project
